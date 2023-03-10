@@ -1,0 +1,5 @@
+INSERT INTO Productos (nombre, descripcion, precio, stock) VALUES
+('Pasajes', 12.99, 50),
+('Hoteles', 39.99, 30),
+('Excursiones', 149.99, 10),
+('Restaurantes', 49.99, 25),
