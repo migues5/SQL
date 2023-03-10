@@ -6,11 +6,3 @@ VALUES
   ("Luis", "Sánchez", "desarrollador", 1900.00),
   ("Ana", "Ramírez", "Vendedor", 2500.00),
   ("Pedro", "Martínez", "licenciado en turismo", 1800.00);
-#PROVEEDORES
-INSERT INTO Proveedores (nombre, direccion, telefono, correo)
-VALUES
-  ("Hoteles S.A.", "Calle 123, Ciudad", "555-1234", "info@hoteles.com"),
-  ("Pasajes S.A.", "Avenida 456, Pueblo", "555-5678", "ventas@pasajes.com"),
-  ("Excursiones S.A.", "Boulevard 789, Villa", "555-9012", "info@excursiones.com"),
-  ("Restaurantes S.A.", "Carrera 1011, Poblado", "555-3456", "ventas@restaurantes.com"),
-  ("Tienda de Ropa Local S.A.", "Callejón 1213, Paraje", "555-7890", "info@tiendaderopalocal.com");
