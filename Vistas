@@ -1,0 +1,49 @@
+#Vista de productos disponibles con su cantidad en stock y precio:
+
+CREATE VIEW productos_disponibles AS
+SELECT id, nombre, descripcion, precio, stock
+FROM Productos
+WHERE stock > 0;
+
+SELECT * FROM productos_disponibles;
+
+#Vista de pedidos con el nombre y apellido del usuario que los realizó:
+
+CREATE VIEW pedidos_con_usuarios AS
+SELECT reservas.id, reservas.fecha, reservas.total, Usuarios.nombre, Usuarios.apellido
+FROM Reservas
+INNER JOIN Usuarios ON Reservas.id_cliente = Usuarios.id;
+
+SELECT * FROM reservas_con_usuarios;
+
+
+#Vista de proveedores y los productos que les compran:
+
+CREATE VIEW proveedores_y_productos AS
+SELECT Proveedores.nombre AS proveedor, Productos.nombre AS producto
+FROM Proveedores
+INNER JOIN Productos_Proveedores ON Proveedores.id = Productos_Proveedores.id_proveedor
+INNER JOIN Productos ON Producto_Proveedores.id_producto = Productos.id;
+
+SELECT * FROM proveedores_y_productos;
+
+#Vista de empleados con sus reservas realizados:
+
+CREATE VIEW empleados_con_reservas AS
+SELECT Empleados.id, Empleados.nombre, Empleados.apellido, Reservas.id AS id_reserva, Reserva.fecha, Reserva.total
+FROM Empleados
+INNER JOIN Empleados_reservas ON Empleados.id = Empleados_Reservas.id_empleado
+INNER JOIN Reservas ON Empleados_Reservas.id_pedido = Reservas.id;
+
+SELECT * FROM empleados_con_reserva;
+
+#Vista de los productos que se han comprado en cada reserva:
+
+CREATE VIEW productos_por_reserva AS
+SELECT Reserva.id AS id_reserva, Productos_Reservas.id_reserva, Productos.nombre AS nombre_producto, Productos_Reservas.cantidad
+FROM Pedidos
+INNER JOIN Productos_Reservas ON Reservas.id = Productos_Reservas.id_reserva
+INNER JOIN Productos ON Productos_Reserva.id_producto = Productos.id;
+
+
+SELECT * FROM productos_por_reserva;
