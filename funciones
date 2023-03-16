@@ -1,1 +1,27 @@
+#Esta función cuenta la cantidad total de productos que hay en la tabla "Productos".
 
+CREATE FUNCTION `count_productos` ()
+RETURNS INTEGER
+DETERMINISTIC
+NO SQL
+BEGIN
+DECLARE cantidad INTEGER;
+SELECT COUNT(*) INTO cantidad FROM Productos;
+RETURN cantidad;
+END
+select patagoniatravelers.count_productos();
+
+
+
+#Esta función calcula el salario promedio de todos los empleados de la tabla "Empleados".
+
+CREATE FUNCTION `salario_promedio` ()
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+NO SQL
+BEGIN
+DECLARE promedio DECIMAL(10,2);
+SELECT AVG(salario) INTO promedio FROM Empleados;
+RETURN promedio;
+END
+select patagoniatravelers.salario_promedio();
