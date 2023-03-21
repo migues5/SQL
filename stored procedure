@@ -1,0 +1,33 @@
+#Stored procedure 1: Devolverá el precio total de una reserva dado su ID.
+
+CREATE PROCEDURE `get_reservation_total_price` (IN `res_id` INT)
+BEGIN
+  SELECT total FROM Reservas WHERE id = res_id;
+END
+
+#Para ejecutar el stored procedure
+call patagoniatravelers.get_reservation_total_price(1);
+
+
+
+#Stored procedure 2: Devolverá el nombre, descripción y precio de un producto dado su ID.
+
+CREATE PROCEDURE `get_product_details` (IN `prod_id` INT)
+BEGIN
+  SELECT nombre, descripcion, precio FROM Productos WHERE id = prod_id;
+END
+
+#Para ejecutar el stored procedure
+call patagoniatravelers.get_product_details(2);
+
+
+
+#Stored procedure 3: Actualizará el stock de un producto después de que se haya realizado una reserva para ese producto.
+
+CREATE PROCEDURE `update_product_stock` (IN `prod_id` INT, IN `quantity` INT)
+BEGIN
+  UPDATE Productos SET stock = stock - quantity WHERE id = prod_id;
+END
+
+#Para ejecutar el stored procedure
+call patagoniatravelers.update_product_stock(3, 3);
