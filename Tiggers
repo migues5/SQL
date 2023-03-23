@@ -1,0 +1,66 @@
+#La tabla"Productos__Auditoria" se utilizará para registrar las acciones que se realicen en la tabla llamada "Productos"
+
+CREATE TABLE Productos__Auditoria (
+id INT AUTO_INCREMENT PRIMARY KEY,
+producto_id INT NOT NULL,
+accion VARCHAR(50) NOT NULL,
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * from Productos__Auditoria;
+
+#El siguiente trigger llamado "tr_Productos__Auditoria" se activará cuando se elimine un registro de la tabla "Productos".
+
+DELIMITER //
+
+CREATE TRIGGER tr_Productos__Auditoria AFTER DELETE ON Productos
+FOR EACH ROW
+BEGIN
+  INSERT INTO Productos__Auditoria (producto_id, accion) 
+  VALUES (OLD.id, 'Eliminación');
+END //
+
+DELIMITER ;
+
+SELECT * from Productos;
+
+DELETE FROM Productos WHERE id = 1;
+
+INSERT INTO Productos (nombre, descripcion, precio, stock) VALUES
+('Excursión al Glaciar Perito Moreno', 'Visita guiada al Glaciar Perito Moreno', 5000.00, 10);
+
+
+
+
+#La tabla"AuditoriasClientes" se utilizará para registrar las acciones que se realicen en la tabla llamada "Productos"
+
+CREATE TABLE AuditoriaClientes (
+id INT AUTO_INCREMENT PRIMARY KEY,
+accion VARCHAR(10) NOT NULL,
+id_cliente INT NOT NULL,
+nombre VARCHAR(255) NOT NULL,
+apellido VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+direccion VARCHAR(255) NOT NULL,
+fecha TIMESTAMP NOT NULL
+);
+
+
+SELECT * FROM AuditoriaClientes;
+
+#El siguiente trigger llamado "auditar_insertar_cliente" se activará cuando se agregue un registro de la tabla "Clientes".
+
+DELIMITER //
+CREATE TRIGGER auditar_insertar_cliente
+AFTER INSERT ON Clientes
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditoriaClientes (accion, id_cliente, nombre, apellido, email, direccion, fecha)
+    VALUES ('INSERTAR', NEW.id, NEW.nombre, NEW.apellido, NEW.email, NEW.direccion, NOW());
+END;
+//
+
+SELECT * FROM Clientes;
+
+INSERT INTO Clientes (nombre, apellido, email, direccion) VALUES
+('Juan', 'Pérez', 'juan.perez@gmail.com', 'Av. San Martín 123');
