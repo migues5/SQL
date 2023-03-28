@@ -1,4 +1,4 @@
-INSERT INTO Usuarios (nombre, apellido, email, direccion)
+INSERT INTO Clientes (nombre, apellido, email, direccion)
 VALUES
   ("Ana", "García", "ana.garcia@email.com", "Calle 123, Ciudad"),
   ("Juan", "Pérez", "juan.perez@email.com", "Avenida 456, Pueblo"),
