@@ -7,14 +7,14 @@ WHERE stock > 0;
 
 SELECT * FROM productos_disponibles;
 
-#Vista de pedidos con el nombre y apellido del usuario que los realizó:
+#Vista de pedidos con el nombre y apellido del cliente que los realizó:
 
-CREATE VIEW pedidos_con_usuarios AS
-SELECT reservas.id, reservas.fecha, reservas.total, Usuarios.nombre, Usuarios.apellido
+CREATE VIEW pedidos_con_clientes AS
+SELECT reservas.id, reservas.fecha, reservas.total, Cliente.nombre, Cliente.apellido
 FROM Reservas
-INNER JOIN Usuarios ON Reservas.id_cliente = Usuarios.id;
+INNER JOIN Usuarios ON Reservas.id_cliente = Cliente.id;
 
-SELECT * FROM reservas_con_usuarios;
+SELECT * FROM reservas_con_clientes;
 
 
 #Vista de proveedores y los productos que les compran:
