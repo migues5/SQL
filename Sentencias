@@ -1,0 +1,18 @@
+-- Crear usuarios con permisos de edición
+CREATE USER 'usuario_edicion'@'localhost' IDENTIFIED BY '12345';
+GRANT INSERT, UPDATE ON patagoniatravelers.* TO 'usuario_edicion'@'localhost';
+FLUSH PRIVILEGES;
+
+-- Crear usuario con permisos de lectura
+CREATE USER 'usuario_lectura'@'localhost' IDENTIFIED BY 'contraseña';
+GRANT SELECT ON patagoniatravelers.* TO 'usuario_lectura'@'localhost';
+FLUSH PRIVILEGES;
+
+-- Verificar que los usuarios han sido creados
+SELECT User FROM mysql.user WHERE User='usuario_edicion' OR User='usuario_lectura';
+
+-- Verificar los permisos del usuario de edición
+SHOW GRANTS FOR 'usuario_edicion'@'localhost';
+
+-- Verificar los permisos del usuario de lectura
+SHOW GRANTS FOR 'usuario_lectura'@'localhost';
