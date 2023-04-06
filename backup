@@ -1,0 +1,6 @@
+USE <nombre_de_base_de_datos>;
+
+SELECT * FROM Productos; -- Mostrar todos los datos de la tabla Productos
+SELECT * FROM Clientes; -- Mostrar todos los datos de la tabla Clientes
+
+mysql -u <nombre_de_usuario> -p<contraseña> <nombre_de_base_de_datos> < backup.sql
