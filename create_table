@@ -82,7 +82,7 @@ INSERT INTO Clientes (nombre, apellido, email, direccion) VALUES
 ('María', 'González', 'maria.gonzalez@hotmail.com', 'Calle Mitre 456'),
 ('Pedro', 'Martínez', 'pedro.martinez@yahoo.com', 'Ruta 40 Km 50');
 
-INSERT INTO Reservas (fecha, total, id_cliente) VALUES
+INSERT INTO Reservas (fecha, total, id_clientes) VALUES
 ('2023-04-15', 15000.00, 1),
 ('2023-05-20', 10500.00, 2),
 ('2023-06-10', 24000.00, 3);
