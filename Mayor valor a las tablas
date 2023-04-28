@@ -1,0 +1,14 @@
+#Obtener el nombre, descripción y precio de todos los productos que tienen menos de 10 unidades de stock:
+SELECT nombre, descripcion, precio FROM Productos WHERE stock < 10;
+
+#Obtener el nombre y correo electrónico de los clientes que han realizado reservas en junio de 2023:
+SELECT nombre, email FROM Clientes WHERE id IN (SELECT id_clientes FROM Reservas WHERE fecha >= '2023-06-01' AND fecha <= '2023-06-30');
+
+#Obtener el nombre y salario de los empleados que tienen un cargo de "Guía turístico":
+SELECT nombre, salario FROM Empleados WHERE cargo = 'Guía turístico';
+
+#Obtener el nombre y cantidad de los productos que se han reservado en cada reserva:
+SELECT p.nombre, pr.cantidad FROM Productos p JOIN Productos_Reservas pr ON p.id = pr.id_producto ORDER BY pr.id_reserva;
+
+#Obtener el nombre y dirección de los proveedores que suministran productos a la empresa:
+SELECT nombre, direccion FROM Proveedores WHERE id IN (SELECT id_proveedor FROM Productos_Proveedores);
