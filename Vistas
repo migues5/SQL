@@ -1,3 +1,4 @@
+USE patagoniatravelers;
 #Vista de productos disponibles con su cantidad en stock y precio:
 
 CREATE VIEW productos_disponibles AS
@@ -7,39 +8,30 @@ WHERE stock > 0;
 
 SELECT * FROM productos_disponibles;
 
+#Vista de Productos con información de sus proveedores:
+CREATE VIEW Productos_Proveedores_View AS
+SELECT p.id, p.nombre, p.descripcion, p.precio, p.stock, pr.nombre AS proveedor
+FROM Productos p
+INNER JOIN Productos_Proveedores pp ON p.id = pp.id_producto
+INNER JOIN Proveedores pr ON pp.id_proveedor = pr.id;
+
+SELECT * FROM Productos_Proveedores_View;
 
 
-#Vista de proveedores y los productos que les compran:
+#Vista de Clientes con información de sus reservas:
+CREATE VIEW Clientes_Reservas_View AS
+SELECT c.id, c.nombre, c.apellido, c.email, c.direccion, r.fecha, r.total
+FROM Clientes c
+INNER JOIN Reservas r ON c.id = r.id_clientes;
 
-CREATE VIEW proveedores_y_productos AS
-SELECT Proveedores.nombre AS proveedor, Productos.nombre AS producto
-FROM Proveedores
-INNER JOIN Productos_Proveedores ON Proveedores.id = Productos_Proveedores.id_proveedor
-INNER JOIN Productos ON Producto_Proveedores.id_producto = Productos.id;
-
-SELECT * FROM proveedores_y_productos;
+SELECT * FROM Clientes_Reservas_View;
 
 
+#Vista de Empleados con información de sus reservas
+CREATE VIEW Empleados_Reservas_View AS
+SELECT e.id, e.nombre, e.apellido, e.cargo, e.salario, r.fecha, r.total
+FROM Empleados e
+INNER JOIN Empleados_Reservas er ON e.id = er.id_empleado
+INNER JOIN Reservas r ON er.id_reserva = r.id;
 
-#Vista de empleados con sus reservas realizados:
-
-CREATE VIEW empleados_con_reservas AS
-SELECT Empleados.id, Empleados.nombre, Empleados.apellido, Reservas.id AS id_reserva, Reserva.fecha, Reserva.total
-FROM Empleados
-INNER JOIN Empleados_reservas ON Empleados.id = Empleados_Reservas.id_empleado
-INNER JOIN Reservas ON Empleados_Reservas.id_pedido = Reservas.id;
-
-SELECT * FROM empleados_con_reserva;
-
-
-
-#Vista de los productos que se han comprado en cada reserva:
-
-CREATE VIEW productos_por_reserva AS
-SELECT Reserva.id AS id_reserva, Productos_Reservas.id_reserva, Productos.nombre AS nombre_producto, Productos_Reservas.cantidad
-FROM Pedidos
-INNER JOIN Productos_Reservas ON Reservas.id = Productos_Reservas.id_reserva
-INNER JOIN Productos ON Productos_Reserva.id_producto = Productos.id;
-
-
-SELECT * FROM productos_por_reserva;
+SELECT * FROM Empleados_Reservas_View;
