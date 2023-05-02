@@ -9,7 +9,7 @@ DECLARE cantidad INTEGER;
 SELECT COUNT(*) INTO cantidad FROM Productos;
 RETURN cantidad;
 END
-select patagoniatravelers.count_productos();
+
 
 
 
@@ -24,4 +24,4 @@ DECLARE promedio DECIMAL(10,2);
 SELECT AVG(salario) INTO promedio FROM Empleados;
 RETURN promedio;
 END
-select patagoniatravelers.salario_promedio();
+
